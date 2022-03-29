@@ -1,110 +1,127 @@
-@extends('layouts.app')
+@extends('layouts.credentials')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+    <div class="login-logo">
+        <a href="../../index2.html"><b>Sign Up</b></a>
+    </div>
+    <!-- /.login-logo -->
 
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}">
-                            @csrf
-
-                            <div class="row mb-3">
-                                <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                        name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="email"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                        name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="email" class="col-md-4 col-form-label text-md-end">Role</label>
-
-                                <div class="col-md-6">
-
-                                    <select name="role_id" id="role_id"
-                                        class="form-control @error('role_id') is-invalid @enderror">
-                                        <option value="">Select a role</option>
-
-                                        {{ $roles }}
-                                        @foreach ($roles as $role)
-                                            <option value="{{ $role->id }}">{{ $role->title }}</option>
-                                        @endforeach
-
-                                    </select>
+    <div class="card-body login-card-body">
 
 
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
+        <form method="POST" action="{{ route('register') }}">
+            @csrf
 
-                            <div class="row mb-3">
-                                <label for="password"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+            <!--Name-->
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="name" placeholder="Name" value="{{ old('name') }}">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-user"></span>
+                    </div>
+                </div>
 
-                                <div class="col-md-6">
-                                    <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="new-password">
+            </div>
+            @error('name')
+                <span role="alert">
+                    <strong>
+                        <p class="text text-danger">{{ $message }}</p>
+                    </strong>
+                </span>
+            @enderror
 
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control"
-                                        name="password_confirmation" required autocomplete="new-password">
-                                </div>
-                            </div>
-
-                            <div class="row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Register') }}
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+            <!--Email-->
+            <div class="input-group mb-3">
+                <input type="email" class="form-control" name="email" placeholder="Email" value="{{ old('email') }}">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-envelope"></span>
                     </div>
                 </div>
             </div>
-        </div>
+            @error('email')
+                <span role="alert">
+                    <strong>
+                        <p class="text text-danger">{{ $message }}</p>
+                    </strong>
+                </span>
+            @enderror
+
+            <!--Password-->
+            <div class="input-group mb-3">
+                <input type="password" class="form-control" name="password" placeholder="Password"
+                    value="{{ old('password') }}">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+            @error('password')
+                <span role="alert">
+                    <strong>
+                        <p class="text text-danger">{{ $message }}</p>
+                    </strong>
+                </span>
+            @enderror
+
+
+            <!--Confirm Password-->
+            <div class="input-group mb-3">
+                <input type="password" class="form-control" name="cpassword" placeholder="Confirm Password"
+                    value="{{ old('cpassword') }}">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+            @error('cpassword')
+                <span role="alert">
+                    <strong>
+                        <p class="text text-danger">{{ $message }}</p>
+                    </strong>
+                </span>
+            @enderror
+
+            <!--Confirm Password-->
+            <div class="input-group mb-3">
+
+                <select class="form-control" name="role_id" value="{{ old('role_id') }}">
+                    <option value="">Select your role</option>
+                    @foreach ($roles as $role)
+                        <option value="{{ $role->id }}">{{ $role->title }}</option>
+                    @endforeach
+                </select>
+
+            </div>
+            @error('role_id')
+                <span role="alert">
+                    <strong>
+                        <p class="text text-danger">{{ $message }}</p>
+                    </strong>
+                </span>
+            @enderror
+
+            <div class="row">
+                <div class="col-8">
+
+                </div>
+
+            </div>
+            <div class="social-auth-links text-center mb-3">
+
+
+                <button type="submit" class="btn btn-block btn-primary">Signup</button>
+
+            </div>
+        </form>
+
+
+        <!-- /.social-auth-links -->
+        <p class="mb-0">
+            <a href="{{ route('login') }}" class="text-center">Already have an account? Click here</a>
+        </p>
     </div>
+    <!-- /.login-card-body -->
 @endsection
