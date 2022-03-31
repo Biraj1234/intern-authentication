@@ -10,7 +10,7 @@
         <form action="{{ route('login') }}" method="post">
             @csrf
             <div class="input-group mb-3">
-                <input type="email" class="form-control" name="email" placeholder="Email">
+                <input type="email" class="form-control" name="email" placeholder="Email" value="{{ old('email') }}">
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <span class="fas fa-envelope"></span>
@@ -26,7 +26,8 @@
                 </span>
             @enderror
             <div class="input-group mb-3">
-                <input type="password" class="form-control" name="password" placeholder="Password">
+                <input type="password" class="form-control" name="password" placeholder="Password"
+                    value="{{ old('password') }}">
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <span class="fas fa-lock"></span>
